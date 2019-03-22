@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
 
+    public GameObject HUD;
     public int health;
     public int score;
     public bool isimmune;
@@ -22,6 +23,7 @@ public class PlayerStats : MonoBehaviour {
             timeelapsed += Time.deltaTime;
             if(timeelapsed>immunityduration)
             {
+                SR.enabled = true;
                 isimmune = false;
                 StopCoroutine("Flashing");
                 timeelapsed = 0;
@@ -35,6 +37,7 @@ public class PlayerStats : MonoBehaviour {
         {
             health -= damage;
             isimmune = true;
+            HUD.GetComponent<HUDController>().UpdateHealth(health);
             StartCoroutine("Flashing");
         }
        

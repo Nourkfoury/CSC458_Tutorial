@@ -72,6 +72,8 @@
     <Compile Include="Assets\_Scripts\PlayerController.cs" />
     <Compile Include="Assets\_Scripts\PlayerStats.cs" />
     <Compile Include="Assets\CoinJump.cs" />
+    <Compile Include="Assets\HUDController.cs" />
+    <Compile Include="Assets\SwitchToMain.cs" />
     <None Include="Assets\CSC458_Assets\Readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Halim/Documents/GitHub/CSC458_Tutorial/Unity Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
