@@ -37,6 +37,20 @@ public class PlayerStats : MonoBehaviour {
         {
             health -= damage;
             isimmune = true;
+
+            if(health==0)
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(300, 300));
+                Camera cam = Camera.main;
+                cam.transform.SetParent(null);
+                GetComponent<CircleCollider2D>().enabled = false;
+                GetComponent<PlayerController>().enabled = false;
+                GetComponent<Animator>().enabled = false;
+                GetComponent<PlayerStats>().enabled = false;
+                HUD.GetComponent<HUDController>().GameOverText();
+
+                return;
+            }
             HUD.GetComponent<HUDController>().UpdateHealth(health);
             StartCoroutine("Flashing");
         }
@@ -46,6 +60,7 @@ public class PlayerStats : MonoBehaviour {
     {
 
         score += amount;
+        HUD.GetComponent<HUDController>().UpdateScore(score);
         
     }
 

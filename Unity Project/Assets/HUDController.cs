@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HUDController : MonoBehaviour {
-    
+    public GameObject textObj;
     public GameObject heart1, heart2, heart3;
     private SpriteRenderer heart1Sp, heart2Sp, heart3Sp;
     public Sprite fullHeart, HalfHeart, NoHeart;
-
+    public GameObject gameOverText;
 	// Use this for initialization
 	void Start () {
         heart1Sp = heart1.GetComponent<SpriteRenderer>();
@@ -18,7 +18,7 @@ public class HUDController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+        
 	}
 
     public void UpdateHealth(int health)
@@ -62,5 +62,15 @@ public class HUDController : MonoBehaviour {
                 heart3Sp.sprite = NoHeart;
                 break;
         }
+    }
+
+    public void UpdateScore(int score)
+    {
+        textObj.GetComponent<UnityEngine.UI.Text>().text = score.ToString();
+    }
+
+    public void GameOverText()
+    {
+        gameOverText.SetActive(true);
     }
 }

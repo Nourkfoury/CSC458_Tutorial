@@ -25,6 +25,7 @@ public class ChestController : MonoBehaviour {
             temp.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-2, 2), Random.Range(3, 6)), ForceMode2D.Impulse);
 
             CoinPopped = true;
+            GetComponent<ParticleSystem>().Play();
         }
     }
 }

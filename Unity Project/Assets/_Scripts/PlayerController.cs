@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    private AudioSource audiosrc;
+    public AudioClip jumpingAudio, walkingAudio;
     public float maxSpeed;
     public float jumpForce;
     public LayerMask groundLayer;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         Player_Rigid = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
+        audiosrc = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour {
            
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                PlayJump();
                 player_anim.SetBool("Jump", true);
                 Player_Rigid.velocity = new Vector2(Player_Rigid.velocity.x, 0);
                 Player_Rigid.AddForce(new Vector2(0, jumpForce));
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour {
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                PlayJump();
                 Player_Rigid.velocity = new Vector2(Player_Rigid.velocity.x, 0);
                 Player_Rigid.AddForce(new Vector2(0, jumpForce));
                 isJumping = false;
@@ -87,5 +92,17 @@ public class PlayerController : MonoBehaviour {
     void Flip()
     {
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void PlayFootSteps()
+    {
+        audiosrc.clip = walkingAudio;
+        audiosrc.Play();
+    }
+
+    public void PlayJump()
+    {
+        audiosrc.clip = jumpingAudio;
+        audiosrc.Play();
     }
 }
